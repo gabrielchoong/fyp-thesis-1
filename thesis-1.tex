@@ -1,0 +1,67 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} % for including images
+\usepackage{times} % for setting fonts
+\usepackage{amsmath}  % for advanced math
+\usepackage[style=apa, backend=biber]{biblatex} % for handling citations
+\usepackage{geometry} % to change the page dimensions
+\geometry{margin=1in} % adjust margins
+
+% Redefining the "andothers" macro to italicize "et al."
+\renewbibmacro*{name:andothers}{% 
+  \ifboolexpr{
+    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+    and
+    test \ifmorenames
+  }
+    {\ifnumgreater{\value{liststop}}{1}
+       {\finalandcomma}
+       {}%
+     \andothersdelim\emph{et al.}} % Use \emph to italicize "et al."
+    {}}
+
+% Bibliography file (you will need to create a .bib file for references)
+\addbibresource{references.bib}
+\DeclareLanguageMapping{english}{english-apa}
+
+% Title and Author
+\title{To be Set}
+\author{Gabriel Choong}
+\date{\today}
+
+\begin{document}
+
+% Title Page
+\maketitle
+
+% Abstract (if needed)
+% \begin{abstract}
+% This document provides a review of recent research and developments in the application of Artificial Intelligence (AI), specifically Artificial Neural Networks (ANN), for optimizing Internal Combustion Engine (ICE) performance.
+% \end{abstract}
+
+% Introduction Section
+% \section{Introduction}
+% Recently, there has been a growing interest in using artificial intelligence for modelling and optimising Internal Combustion Engine (ICE) performance with the aim of improving fuel efficiency and reducing emissions \cite{karunamurthy2023}. This interest stems from the high adaptability of AI models in the automotive industry, such as their ability to handle big data and improve accuracy in real-time control of engine parameters \cite{ineza2023}.
+
+% Literature Review
+\section{Literature Review}
+Recently, there has been a growing interest in using artificial intelligence for modelling and optimising Internal Combustion Engine (ICE) performance with the aim of improving fuel efficiency and reducing emissions \parencite{karunamurthyPredictionICEngine2023}. This interest stems from the high adaptability of AI models in the automotive industry, such as their ability to handle big data and improve accuracy in real-time control of engine parameters \parencite{inezahavugimanaReviewArtificialIntelligent2023}. The complexity of ICE makes simulating their physics both challenging and labour-intensive. As a result, researchers had applied various machine learning algorithms for predicting IC engine performance and emissions. Recent work suggests Artificial Neural Networks (ANN) was able to reduce experimental time and subsequent costs for IC Engines \parencite{bhattApplicationArtificialNeural2022, tuanhoangReviewApplicationArtificial2021}. However, current studies are concerned with the network topology and design of ANN to achieve the highest performance due to the complex nature of ANNs. Moreover, several studies have combined ANN with additional optimisation techniques to further leverage the capability of these neural networks.
+
+% Main Content Section
+% \section{Artificial Neural Networks in ICE Modelling}
+% The complexity of ICE makes simulating their physics both challenging and labour-intensive. As a result, researchers have applied various machine learning algorithms for predicting ICE performance and emissions. Recent work suggests that Artificial Neural Networks (ANN) are able to reduce experimental time and subsequent costs for IC Engines \cite{bhatt2022}. However, current studies are concerned with the network topology and design of ANN to achieve the highest performance due to the complex nature of ANNs.
+
+% \subsection{Combining ANN with Optimization Techniques}
+% Moreover, several studies have combined ANN with additional optimisation techniques to further leverage the capability of these neural networks \cite{tuan2021}.
+
+% Conclusion Section
+% \section{Conclusion}
+% In conclusion, Artificial Neural Networks (ANN) have demonstrated great potential in reducing the complexity and costs associated with ICE performance and emission control. However, there remain challenges in optimizing ANN architectures and combining them with other techniques for enhanced results.
+
+% References Section
+\printbibliography
+
+\end{document}
