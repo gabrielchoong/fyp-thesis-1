@@ -6,6 +6,10 @@
 \usepackage{graphicx} % for including images
 \usepackage{times} % for setting fonts
 \usepackage{amsmath}  % for advanced math
+\usepackage{booktabs} % for nicer tables
+\usepackage{rotating} % for rotating tables
+\usepackage{pdflscape} % for landscape tables
+\usepackage{caption} % for table captions
 \usepackage[style=apa, backend=biber]{biblatex} % for handling citations
 \usepackage{geometry} % to change the page dimensions
 \geometry{margin=1in} % adjust margins
@@ -17,53 +21,84 @@
     and
     test \ifmorenames
   }
-    {\ifnumgreater{\value{liststop}}{1}
-       {\finalandcomma}
-       {}%
-     \andothersdelim\emph{et al.}} % Use \emph to italicize "et al."
-    {}}
+  {\ifnumgreater{\value{liststop}}{1}
+  {\finalandcomma}
+  {}%
+  \andothersdelim\emph{et al.}} % Use \emph to italicize "et al."
+  {}}
 
-% Bibliography file (you will need to create a .bib file for references)
-\addbibresource{references.bib}
-\DeclareLanguageMapping{english}{english-apa}
+  % Bibliography file (you will need to create a .bib file for references)
+  \addbibresource{references.bib}
+  \DeclareLanguageMapping{english}{english-apa}
 
-% Title and Author
-\title{To be Set}
-\author{Gabriel Choong}
-\date{\today}
+  % Title and Author
+  \title{Title}
+  \author{Gabriel Choong}
+  \date{\today}
 
-\begin{document}
+  % Formats
+  \tolerance=1000 % Default is 200, increasing may reduce warnings
 
-% Title Page
-\maketitle
+  \begin{document}
 
-% Abstract (if needed)
-% \begin{abstract}
-% This document provides a review of recent research and developments in the application of Artificial Intelligence (AI), specifically Artificial Neural Networks (ANN), for optimizing Internal Combustion Engine (ICE) performance.
-% \end{abstract}
+  % Title Page
+  \maketitle
 
-% Introduction Section
-% \section{Introduction}
-% Recently, there has been a growing interest in using artificial intelligence for modelling and optimising Internal Combustion Engine (ICE) performance with the aim of improving fuel efficiency and reducing emissions \cite{karunamurthy2023}. This interest stems from the high adaptability of AI models in the automotive industry, such as their ability to handle big data and improve accuracy in real-time control of engine parameters \cite{ineza2023}.
+  % Abstract (if needed)
+  % \begin{abstract}
 
-% Literature Review
-\section{Literature Review}
-Recently, there has been a growing interest in using artificial intelligence for modelling and optimising Internal Combustion Engine (ICE) performance with the aim of improving fuel efficiency and reducing emissions \parencite{karunamurthyPredictionICEngine2023}. This interest stems from the high adaptability of AI models in the automotive industry, such as their ability to handle big data and improve accuracy in real-time control of engine parameters \parencite{inezahavugimanaReviewArtificialIntelligent2023}. The complexity of ICE makes simulating their physics both challenging and labour-intensive. As a result, researchers had applied various machine learning algorithms for predicting IC engine performance and emissions. Recent work shows Artifical Neural Networks (ANNs) reduce experimental time and subsequent costs for IC Engines \parencite{bhattApplicationArtificialNeural2022, tuanhoangReviewApplicationArtificial2021}. However, current studies are concerned with the network topology and design of ANN to achieve the highest performance due to the complex nature of ANNs. Moreover, several studies have combined ANN with additional optimisation techniques to further leverage the capability of these neural networks. \\
+  % \end{abstract}
 
-Several studies have explored using ANN with optimisation techniques like the Box-Behnken design in optimising engine characteristics. One study proposed a three-layer (4-10-7) ANN model based on a multi-layer perceptron network (MLP) validated using Response Surface Methodology (RSM) with errors below 9\%. The authors argued that linking RSM with ANN significantly reduced exhaust pollutants while maintaining engine performance within permissible limits \parencite{sharmaapplicationmachinelearning2023}. Another study found RSM to be effective in analysing the impact of various variables on engine performance and exhaust emissions. It concluded that RSM provided more accurate estimates than ANN in estimating engine outputs based on a comparison of their independent results \parencite{usluOptimizationDieselEngine2020}. Both studies outlined the strength of RSM in optimising engine operating parameters. However, the ANN-RSM model yielded superior $R^2$ (0.9453-0.9761) values compared to the RSM model alone, with $R^2$ (0.9055-0.9508) values. In another instance, researchers used the Harris Hawks and whale optimisation algorithm (HHOWOA) with ANN to forecast performance and emission properties. He proposed this algorithm as well-suited for optimising IC engines with a classification rate of 0.9867 \parencite{singhSampleddataModelValidation2020}. In fact, the integration of ANN with an optimisation model demonstrates higher performance compared to a bare ANN alone \parencite{gunawanApplicationArtificialNeural2024}. \\
+  % Introduction Section
+  % \section{Introduction}
 
-% Main Content Section
-% \section{Artificial Neural Networks in ICE Modelling}
-% The complexity of ICE makes simulating their physics both challenging and labour-intensive. As a result, researchers have applied various machine learning algorithms for predicting ICE performance and emissions. Recent work suggests that Artificial Neural Networks (ANN) are able to reduce experimental time and subsequent costs for IC Engines \cite{bhatt2022}. However, current studies are concerned with the network topology and design of ANN to achieve the highest performance due to the complex nature of ANNs.
+  % Literature Review
+  \section{Literature Review}
+  Recently, there has been a growing interest in using artificial intelligence for modelling and optimising Internal Combustion Engine (ICE) performance with the aim of improving fuel efficiency and reducing emissions \parencite{karunamurthyPredictionICEngine2023}. This interest stems from the high adaptability of AI models in the automotive industry, such as their ability to handle big data and improve accuracy in real-time control of engine parameters \parencite{inezahavugimanaReviewArtificialIntelligent2023}. The complexity of ICE makes simulating their physics both challenging and labour-intensive. As a result, researchers had applied various machine learning algorithms for predicting IC engine performance and emissions. Recent work shows Artifical Neural Networks (ANNs) reduce experimental time and subsequent costs for IC Engines \parencite{bhattApplicationArtificialNeural2022, tuanhoangReviewApplicationArtificial2021}. However, current studies are concerned with the network topology and design of ANN to achieve the highest performance due to the complex nature of ANNs. Moreover, several studies have combined ANN with additional optimisation techniques to further leverage the capability of these neural networks. \\
 
-% \subsection{Combining ANN with Optimization Techniques}
-% Moreover, several studies have combined ANN with additional optimisation techniques to further leverage the capability of these neural networks \cite{tuan2021}.
 
-% Conclusion Section
-% \section{Conclusion}
-% In conclusion, Artificial Neural Networks (ANN) have demonstrated great potential in reducing the complexity and costs associated with ICE performance and emission control. However, there remain challenges in optimizing ANN architectures and combining them with other techniques for enhanced results.
+  Several studies have explored using ANN with optimisation techniques like the Box-Behnken design in optimising engine characteristics, such as performance, fuel efficiency, and exhaust emissions. One study proposed a three-layer (4-10-7) ANN model using a multi-layer perceptron network (MLP) validated by Response Surface Methodology (RSM) with errors below 9\% \parencite{sharmaApplicationMachineLearning2023}. The authors argued that linking RSM with ANN significantly reduced exhaust pollutants while maintaining engine performance within permissible limits. Another study found RSM to be effective in analysing the impact of various variables on engine performance and exhaust emissions \parencite{usluOptimizationDieselEngine2020}. It concluded that RSM provided more accurate estimates than ANN in estimating engine outputs based on a comparison of their independent results. Both studies outlined the strength of RSM in optimising engine operating parameters. However, the ANN-RSM model yielded superior coefficient of determination ($R^2$) (0.9453-0.9761) values compared to the RSM model alone, with $R^2$ (0.9055-0.9508) values. Additionally, researchers used the Harris Hawks and whale optimisation algorithm (HHOWOA) with ANN to forecast performance and emission properties \parencite{singhSampleddataModelValidation2020}. The authors proposed this algorithm as well-suited for optimising IC engines with a classification rate of 0.9867. In fact, the integration of ANN with an optimisation model demonstrates higher performance compared to a bare ANN alone \parencite{gunawanApplicationArtificialNeural2024}. \\
 
-% References Section
-\printbibliography
+
+  The Harris Hawks Optimisation (HHO) is modelled after the hunting strategy of Harris Hawks known as "surprise pounce" \parencite{heidariHarrisHawksOptimization2019}. The algorithm has been proven outstanding in searching for optimal solutions while avoiding local optima. It has also demonstrated superior convergence results in common engineering design tasks, such as three-bar truss design, pressure vessel design, and multi-plate disc clutch brake optimisation. Fundamentally, the flexibility and performance of HHO solidify its status as well-suited for IC engine modelling. A recent advancement consolidated the performance metrics of several optimisation models in predictive modelling \parencite{dekaOptimisingNovelMethanol2024}. The results highlight the competence of HHO, with its metrics closely following those of the proposed Partial Reinforcement Optimiser (PRO) algorithm integrated with Random Vector Functional Link (RVFL). The authors emphasised HHO's predictive capability regarding the Volumetric Efficiency (VE) metric. One notable study explored a lower-level control strategy for the Engine Control Unit (ECU), comparing the commonly used Proportional Integral Derivative (PID) approach with a Reinforcement Learning (RL) model, specifically for electronic throttle value control \parencite{omranDeepReinforcementLearning2024}. The authors highlighted the RL approach achieved superior response precision and stability in regulating engine idle speed, though the trade-offs in efficiency and cost continue to favour conventional PID systems.\\
+
+
+  Further illustrating AI's potential within engine systems, a recent study utilised deep learning to predict combustion pressure based on flame images, highlighting its potential for real-time engine applications as new technology becomes more cost effective \parencite{magedPredictionCombustionPressure2025}. Collectively, these studies highlight a gap in real-time engine parameters control, indicating a need for further investigation into an integrated approach that addresses both the engine's physical dynamics and the software algorithms governing its operation. Current methods often overlook the interplay between hardware limitations and the complexity of AI models. Therefore, a more comprehensive exploration is required to ensure that both the physical characteristics of the engine and the control algorithms work synergistically, which improves the performance and efficiency in ICE systems. \\
+
+  % \begin{landscape}
+  % \begin{sidewaystable}[ht]
+  \begin{table}[ht]
+    \centering
+    \caption{Related Work Summary}
+    \label{tab:summary_table}
+    \scalebox{0.80} {
+      \begin{tabular}{p{4cm} p{3cm} p{4cm} p{4cm}} % Adjust column alignment as needed
+        \toprule
+        \textbf{Author} & \textbf{Model} & \textbf{Results} & \textbf{Future Works} \\
+        \midrule
+        \parencite{usluOptimizationDieselEngine2020} & ANN \& RSM & $\textbf{RSM}$ $R^2$ (0.9055-0.9508); $\textbf{ANN}$ $R^2$ (0.8847-0.9423) & Not mentioned \\
+        \parencite{singhSampleddataModelValidation2020} & ANN-HHOWOA & Classification rate (98.67\%) & Proposed method could be used for engine design \\
+        \parencite{sharmaApplicationMachineLearning2023} & ANN-RSM & $R$ (0.9723-0.988), $R^2$ (0.9453-0.9761); $MSE$ (0.013-0.128) & Replacing experimental trials utilising ANN \\
+        \parencite{dekaOptimisingNovelMethanol2024} & PRO-RFVL & $\textbf{BP}$ $R^2$ 0.93, $RMSE$ 1.13; \textbf{BSFC} $R^2$ 0.91, $RMSE$ 1.45; \textbf{BTE} $R^2$ 0.89; \textbf{BMEP} $R^2$ 0.81, $RMSE$ 2.80; \textbf{VE} $R^2$ 0.71, $RMSE$ 3.13 & Testing the proposed method against wide variety of engines \\
+        \parencite{omranDeepReinforcementLearning2024} & Deep Q-Network & $RMSE$ $66 (r/min)^2$, $MAE$ $55 (r/min)$ & Applying advanced control strategies in automotives \\
+        \parencite{magedPredictionCombustionPressure2025} & EfficientNetB4 & $R^2$ 0.94, $RMSE$ 0.70 & Predict critcal parameters using proposed method \\
+        \bottomrule
+      \end{tabular}
+      }
+  \end{table}
+  % \end{sidewaystable}
+  % \end{landscape}
+
+  % Main Content Section
+  % \section{Methodology}
+
+  % \subsection{Combining ANN with Optimization Techniques}
+
+  % Conclusion Section
+  % \section{Conclusion}
+
+  % References Section
+  \newpage
+  \printbibliography
 
 \end{document}
